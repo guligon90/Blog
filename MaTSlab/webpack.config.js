@@ -2,16 +2,16 @@ const path = require('path');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const config = {
-  entry: {
-    app: './src/index.tsx',
-    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
-    'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker',
-  },
   output: {
     globalObject: 'self',
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
+  entry: {
+    app: './src/index.tsx',
+    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js',
+    'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker',
+  },  
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
