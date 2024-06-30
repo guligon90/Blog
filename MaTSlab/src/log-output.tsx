@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Inspector from 'react-inspector';
+import { Inspector } from 'react-inspector';
 import styled from 'styled-components';
 import { Row, theme } from './style';
 
@@ -51,6 +51,7 @@ const Entry: React.FC<{ entry: unknown; error: boolean }> = ({
     return (
       <EntryOuter>
         <Inspector
+          table={true}
           data={{
             error: (entry as Error).message,
           }}
@@ -60,7 +61,7 @@ const Entry: React.FC<{ entry: unknown; error: boolean }> = ({
   }
   return (
     <EntryOuter>
-      <Inspector data={entry} />
+      <Inspector table={true} data={entry} />
     </EntryOuter>
   );
 };

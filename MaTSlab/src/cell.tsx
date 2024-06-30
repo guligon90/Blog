@@ -239,7 +239,7 @@ return func({ log: window.logger['${cellName}'] }, window.render['${cellName}'])
   React.useEffect(() => {
     if (e1) {
       e1.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, onExecute);
-      e1.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_D, () =>
+      e1.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyD, () =>
         onRemoveCell(cellName),
       );
     }
@@ -255,9 +255,9 @@ return func({ log: window.logger['${cellName}'] }, window.render['${cellName}'])
         <RowV style={{ marginBottom: 8 }}>
           <Title
             value={tempCellName}
-            onChange={e => setTempCellName(e.target.value)}
+            onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setTempCellName(e.target.value)}
             onBlur={() => setTempCellName(cellName)}
-            onKeyDown={e =>
+            onKeyDown={(e: { key: string; }) =>
               e.key === 'Enter' ? onChangeCellName(tempCellName) : null
             }
           />

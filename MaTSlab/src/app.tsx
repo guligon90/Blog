@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Inspector from 'react-inspector';
+import { Inspector } from 'react-inspector';
+// import Inspector from 'react-inspector';
 import { Cell } from './cell';
-import { Figs, useFigs } from './use-figs';
+import { useFigs } from './use-figs';
 import { Row, Col, Button, theme } from './style';
 import * as globals from './globals-impl';
 import { FigurePanes, Panes } from './figure-panes';
@@ -282,7 +283,7 @@ export const App: React.FC<{}> = () => {
           Object.keys(c.results).length > 0 ? (
             <CellVars>
               <span>{c.cellName}</span>
-              <Inspector data={c.results} />
+              <Inspector table={true} data={c.results} />
             </CellVars>
           ) : null,
         )}
