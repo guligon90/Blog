@@ -2,19 +2,19 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
-const baseDir = path.join(__dirname, 'dist');
-
-const staticFile = filename => path.join(baseDir, filename);
-
-const jsFile = name => fs.readFileSync(staticFile(name)).toString();
+const baseDir = pathToJoin => path.join(__dirname, pathToJoin || '');
+const publicDir = pathToJoin => baseDir(`public/${pathToJoin}`);
+const buildDir = pathToJoin => baseDir(`dist/${pathToJoin}`);
+const jsFile = name => fs.readFileSync(buildDir(name)).toString();
 
 const serveJS = () => (req, res) => {
   res.setHeader('content-type', 'application/javascript');
+
   return res.send(jsFile(req.url));
 };
 
 const serveHTML = () => (req, res) => {
-  return res.send(fs.readFileSync(staticFile('index.html')).toString());
+  return res.send(fs.readFileSync(publicDir('index.html')).toString());
 };
 
 const createApp = app => {
@@ -28,6 +28,9 @@ const runApp = app =>
     server.on('error', reject);
   });
 
-const app = express();
-createApp(app);
-runApp(app);
+(() => {
+  const app = express();
+
+  createApp(app);
+  runApp(app);
+})();
